@@ -20,7 +20,7 @@ import TileGridWMTS from 'ol/tilegrid/WMTS';
  * @extends {ol.source.WMTS}
  */
 export default class Tianditu extends WMTSSource {
-    constructor(opt_options) {
+    constructor(opt_options: any) {
         Tianditu.layerLabelMap = {
             "vec": "cva",
             "ter": "cta",
@@ -72,9 +72,9 @@ export default class Tianditu extends WMTSSource {
             wrapX: options.wrapX
         };
         //需要代理时走自定义 tileLoadFunction，否则走默认的tileLoadFunction
-        if (options.tileProxy) {
-            superOptions.tileLoadFunction = tileLoadFunction;
-        }
+        // if (options.tileProxy) {
+        //     superOptions.tileLoadFunction = tileLoadFunction;
+        // }
         super(superOptions);
 
         if (options.tileProxy) {
@@ -83,7 +83,7 @@ export default class Tianditu extends WMTSSource {
         //需要代理时，走以下代码
         var me = this;
 
-        function tileLoadFunction(imageTile, src) {
+        function tileLoadFunction(imageTile: any, src: string) {
             //支持代理
             imageTile.getImage().src = me.tileProxy + encodeURIComponent(src);
         }
@@ -95,7 +95,7 @@ export default class Tianditu extends WMTSSource {
      * @param {Object} projection - 投影参考对象。
      * @returns {ol.tilegrid.WMTS} 返回瓦片网格对象
      */
-    static getTileGrid(projection) {
+    static getTileGrid(projection: string) {
         if (projection === "EPSG:4326" || projection === "EPSG:4490") {
             return Tianditu.default4326TileGrid();
         }

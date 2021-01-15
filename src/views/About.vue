@@ -2,7 +2,7 @@
   <div class="about">
     <h2>{{ msg }}</h2>
     <div class="mapbox">
-      <div >+</div>
+      <div>+</div>
       <div id="map"></div>
     </div>
   </div>
@@ -65,10 +65,10 @@ function initmap(mapbox: string) {
       }),
     ],
   });
-  map.on("click", function (e) {
+  map.on("click", function (e: any) {
     // console.log("click````````e", e);
   });
-  map.on("pointermove", function (t) {
+  map.on("pointermove", function (t: any) {
     let e = t.map.getEventPixel(t.originalEvent);
     // console.log(e,'pointermove');
   });
